@@ -11,3 +11,7 @@
 
 * [PHP](web-application-security/php.md)
 
+## Active Directory
+
+* [ADCS PrivEsc: Certificate Templates](active-directory/adcs-privesc-certificate-templates.md)
+
