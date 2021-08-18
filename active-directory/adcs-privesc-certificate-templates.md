@@ -113,7 +113,7 @@ Set-AdObject "CN=TemplateName,CN=Certificate Templates,CN=Public Key Services,CN
 
 ## Privilege escalation
 
-Using a certificate to authenticate as a privileged principal using PKINIT. There are two ways to achieve this.
+Using a certificate to authenticate as a privileged principal with PKINIT. There are two ways to achieve this.
 
 **The certificate**
 
