@@ -109,7 +109,7 @@ Set-AdObject "CN=TemplateName,CN=Certificate Templates,CN=Public Key Services,CN
     * `integer,` -&gt; priority for the CSP
     * `string` -&gt; CSP to use
 
-> Properties like pkiextendedkeyusage and msPKI-Certificate-Application-Policy should be set as needed depending on the services configured on the CA. However either Client Authentication, Microsoft Smartcard Logon, Key Purpose Client Auth or Any Purpose have to be set, in order to escalate privileges. The corresponding OIDs are publicly available.
+> Properties like `pkiextendedkeyusage` and `msPKI-Certificate-Application-Policy` should be set as needed depending on the services configured on the CA. However either Client Authentication, Microsoft Smartcard Logon, Key Purpose Client Auth or Any Purpose have to be set, in order to escalate privileges. The corresponding OIDs are publicly available.
 
 ## Privilege escalation
 
