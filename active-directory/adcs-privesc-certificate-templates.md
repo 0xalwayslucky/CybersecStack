@@ -33,7 +33,7 @@ certutil -Template
 certutil -Template <Template-Name>
 ```
 
-When rights like `Allow Full Control` or `Allow Write` are granted for a user under your control, this will enable you to edit the specifc certificate template. If the certificate template has `Allow Enroll` for your user\(group\) or you already obtain a certificate for another User Principal Name \(UPN\) it might be possible to escalate privileges or perform lateral movement.
+When rights like `Allow Full Control` or `Allow Write` are granted for a user under your control, this will enable you to edit the specific certificate template. If the certificate template has `Allow Enroll` for your user\(group\) or you already obtain a certificate for another User Principal Name \(UPN\) it might be possible to escalate privileges or perform lateral movement.
 
 > Allow Full Control also grants Allow Enroll rights
 
