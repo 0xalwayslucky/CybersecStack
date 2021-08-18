@@ -270,3 +270,7 @@ Rubeus.exe asktgs /ticket:admin_tgt.kirbi /service:SPN/some.domail.local /dc:dc.
 
 {% embed url="https://github.com/GhostPack/Rubeus" %}
 
+{% embed url="https://docs.microsoft.com/de-de/windows-server/administration/windows-commands/certreq\_1" %}
+
+
+
