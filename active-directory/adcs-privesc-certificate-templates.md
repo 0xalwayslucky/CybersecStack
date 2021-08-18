@@ -70,7 +70,7 @@ The extracted private key also can be used with Rubeus \(see [here](https://gith
 certutil -getreg policy\editflags
 ```
 
-If you find that `EDITF_ATTRIBUTESUBJECTALTNAME2` is set as a flag, you can skip the exploitation step and go right into privilege escalation, since this allows anyone to set a User Principal Name \(UPN\) for any certificate template in the active directory.
+If you find that `EDITF_ATTRIBUTESUBJECTALTNAME2` is set as a flag this allows anyone to set a User Principal Name \(UPN\) for any certificate template in the active directory \(you still might need to modify the template, if you are not able to request/enroll one\).
 
 ## Exploitation / Modification
 
