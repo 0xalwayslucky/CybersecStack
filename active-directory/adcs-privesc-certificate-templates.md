@@ -57,12 +57,12 @@ Export-Certificate -Cert $cert -FilePath c:\test.cer
 #### Extracting the private key from a certificate
 
 ```text
-$pw = "password" | ConvertTo-SecureString -AsPlainText -Force PS 
+$pw = ConvertTo-SecureString "password1!" -AsPlainText -Force 
 $certificate = Get-ChildItem -Path Cert:\CurrentUser\My\<Thumbprint>
 Export-PfxCertificate -Cert $certificate -FilePath key.pfx -Password $pw
 ```
 
-It might be possible to extract the private key with a bogus password, not the actual password. The extracted private key also can be used with Rubeus \(see [here](https://github.com/GhostPack/Rubeus)\)
+The extracted private key also can be used with Rubeus \(see [here](https://github.com/GhostPack/Rubeus)\)
 
 ## Exploitation / Modification
 
