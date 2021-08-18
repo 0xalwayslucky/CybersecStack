@@ -12,12 +12,12 @@ description: Privilege escalation with Active Directory Certificate Services
 certutil -dump # dump general information
 certutil -CA # infromation about the configured certificate authority
 certutil -catemplates # list accessible templates
-cerutil -Template [<TemplateName>] # list rights on the templates or specifc template when specified
+certutil -Template [<TemplateName>] # list rights on the templates or specifc template when specified
 ```
 
 ### Enumerating the ADCS from LDAP
 
-It is also possible to enumerate the ADCS \(Active Directory Certificate Services\) from Linux or any platform that supports LDAP connectivity
+It is also possible to enumerate the Active Directory Certificate Services \(ADCS\) from Linux or any platform that supports LDAP connectivity
 
 ```bash
 ldapsearch -x -H 'ldap://10.10.10.10' -b "CN=Public Key Services,CN=Services,CN=Configuration,DC=test,DC=local" -D 'DOAMIN\user' -w 'password!' # All information about the Public key services
