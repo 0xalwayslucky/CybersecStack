@@ -132,8 +132,6 @@ Using a certificate to authenticate as a privileged principal with PKINIT. There
 
 when escalating privileges with the UPN, we need \(to enroll\) a certificate with the `subject alternative name`set to our target.
 
-
-
 #### Setting the subject alternative name and enrolling a certificate
 
 **Powershell**
@@ -196,8 +194,6 @@ certreq -q -accept cert.pem
 1. create a `-new` certificate request from given policy file
 2. `-Submit` the generated `request.pem` to the certificate authority
 3. `-Accept` and install the response of the certificate authority
-
-
 
 #### Using an existing certificate
 
