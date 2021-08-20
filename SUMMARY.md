@@ -9,6 +9,8 @@
 
 ## Web application security
 
+* [Client Side Request Forgery](web-application-security/client-side-request-forgery.md)
+* [Server Side Request Forgery](web-application-security/server-side-request-forgery.md)
 * [PHP](web-application-security/php.md)
 
 ## Active Directory
