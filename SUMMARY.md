@@ -7,6 +7,10 @@
 * [Compiling](pentest-env-windows/compiling.md)
 * [Windows Defender](pentest-env-windows/windows-defender.md)
 
+## pentest environment: linux
+
+* [Unattended Kali Linux installation](pentest-environment-linux/unattended-kali-linux-installation.md)
+
 ## Web application security
 
 * [Client Side Request Forgery](web-application-security/client-side-request-forgery.md)
